@@ -30,11 +30,9 @@
 
 {# SECTION 2: MACROS #}
 
-{# If 'allowtwig' is true for this field, we'll need to parse it as
-   Twig here. Note, that we're doing this inside a macro, so the
-   snippet has a limited scope. No global variables, etc. #}
-{% macro parsetextfield(object, key) %}
-    <div {% if key is not empty %}data-bolt-field="{{key}}"{% endif %}>{{ object.getDecodedValue(key) }}</div>
+{# Output a text-like field with the wrapper for live editing. #}
+{% macro textfield(object, key) %}
+    <div data-bolt-field="{{key}}">{{ object.getDecodedValue(key) }}</div>
 {% endmacro %}
 
 {% macro imagelistfield(images) %}
@@ -56,7 +54,7 @@
 
         {# HTML, Textarea, Text and Markdown fields #}
         {% if fieldtype in ['html', 'textarea', 'text', 'markdown'] %}
-            {{ macro.parsetextfield(object, key) }}
+            {{ macro.textfield(object, key) }}
         {% endif %}
 
         {# Image fields #}
