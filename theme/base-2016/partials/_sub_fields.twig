@@ -33,7 +33,7 @@
 {# If 'allowtwig' is true for this field, we'll need to parse it as
    Twig here. Note, that we're doing this inside a macro, so the
    snippet has a limited scope. No global variables, etc. #}
-{% macro parsetextfield(object, key, value, contenttype) %}
+{% macro parsetextfield(object, key) %}
     <div {% if key is not empty %}data-bolt-field="{{key}}"{% endif %}>{{ object.getDecodedValue(key) }}</div>
 {% endmacro %}
 
